@@ -2,7 +2,7 @@
 
 ## Overview
 
-Provisions the Unifi Video software provided by Ubiquity for use with their
+Provisions the Unifi Video software provided by Ubiquiti for use with their
 IP-based video survelliance products.
 
 
@@ -17,16 +17,16 @@ Currently this module is limited to installed a specific version of the server:
 
 ## Requirements
 
-The currently listed GNU/Linux platforms at the [Ubiquity support page](https://www.ubnt.com/download/unifi-video)
+The currently listed GNU/Linux platforms at the [Ubiquiti support page](https://www.ubnt.com/download/unifi-video)
 are supported by this module.
 
 There is no RHEL/clone version or any platforms other than x86_64 because
-Ubiquity don't provide any software/support for those platforms.
+Ubiquiti don't provide any software/support for those platforms.
 
 
 ## Limitations
 
-Ubiquity don't make the software available as a proper APT repo, so we can't
+Ubiquiti don't make the software available as a proper APT repo, so we can't
 (easily) do things like check for the latest version - so we currently pin to
 specific versions.
 

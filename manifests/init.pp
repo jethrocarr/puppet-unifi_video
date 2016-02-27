@@ -1,4 +1,4 @@
-# Installs the Ubiquity UniFi video survillence software.
+# Installs the Ubiquiti UniFi video survillence software.
 class unifi_video (
   $app_version = '3.1.2'
   ) {
@@ -8,7 +8,7 @@ class unifi_video (
   }
   
 
-  # Ubiquity's packaging is a bit of a PITA, they package their software as debs
+  # Ubiquiti's packaging is a bit of a PITA, they package their software as debs
   # without APT repos and naming isn't always consistent (eg sometimes the
   # Ubuntu package is "Debian", sometimes it's "Ubuntu". Only stable releases
   # are supported, however happy to merge PRs for other versions IF it's tested
