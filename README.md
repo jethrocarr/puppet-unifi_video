@@ -1,4 +1,4 @@
-# unifi_video
+# puppet-unifi_video
 
 ## Overview
 
