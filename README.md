@@ -8,7 +8,11 @@ IP-based video survelliance products.
 
 ## Configuration
 
-TBD.
+Currently this module is limited to installed a specific version of the server:
+
+    class { '::unifi_video':
+      app_version => '3.1.2', # pin specific version
+    }
 
 
 ## Requirements
