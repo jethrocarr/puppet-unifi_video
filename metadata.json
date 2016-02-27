@@ -1,0 +1,14 @@
+{
+  "name": "jethrocarr/unifi_video",
+  "version": "0.1.0",
+  "author": "jethrocarr",
+  "summary": "Provisions Ubiquity's Video Surveillance software",
+  "license": "Apache-2.0",
+  "source": "https://github.com/jethrocarr/puppet-unfi_video",
+  "project_page": "https://github.com/jethrocarr/puppet-unfi_video",
+  "issues_url": "https://github.com/jethrocarr/puppet-unfi_video/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
