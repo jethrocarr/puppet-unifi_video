@@ -17,7 +17,13 @@ class unifi_video::backup (
 
   # We need the AWS CLI to be installed. We use ensure_resource to avoid any
   # issues if double-defined by other modules on this system.
-  ensure_resource('package', ['awscli'], {'ensure' => 'installed', 'provider' => 'pip'})
+  ensure_resource('package', ['python-pip'], {'ensure' => 'installed'})
+
+  ensure_resource('package', ['awscli'], {
+    'ensure'   => 'installed',
+    'provider' => 'pip',
+    'require'  => Package['python-pip']
+    })
 
 
   # We use thias/lsyncd to do most of the lsyncd lifting - we just point
