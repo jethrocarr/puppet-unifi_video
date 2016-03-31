@@ -14,6 +14,17 @@ Currently this module is limited to installed a specific version of the server:
       app_version => '3.1.2', # pin specific version
     }
 
+There is also a companion class that can be used to backup video recordings to
+an Amazon S3 bucket for off-site safe keeping. This uses lsyncd and awscli to
+trigger copies of files as they're written to disk to ensure prompt upload of
+any content.
+
+    class { '::unifi_video::backup':
+      $target                => 's3://bucketname/videobackup/,
+      $aws_access_key_id     => 'Required if not using IAM roles',
+      $aws_secret_access_key => 'Required if not using IAM roles',
+    }
+
 
 ## Requirements
 
@@ -22,6 +33,9 @@ are supported by this module.
 
 There is no RHEL/clone version or any platforms other than x86_64 because
 Ubiquiti don't provide any software/support for those platforms.
+
+Optionally requires the use of [thias/lsyncd](https://forge.puppetlabs.com/thias/lsyncd)
+for configuring the lsyncd-based backup/sync of video files.
 
 
 ## Limitations
