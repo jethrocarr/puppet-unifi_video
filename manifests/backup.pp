@@ -28,7 +28,7 @@ class unifi_video::backup (
   # S3 integration.
 
   class { 'lsyncd':
-    config_content => template('unifi_video/lsyncd-s3.conf'),
+    config_content => template('unifi_video/lsyncd-s3.conf.erb'),
     require        => Package['awscli'],
   }
 
