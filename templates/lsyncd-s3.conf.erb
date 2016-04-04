@@ -2,15 +2,15 @@
 
 s3sync = {
     maxProcesses = 1,
-    onStartup = "<% if @aws_access_key_id -%>AWS_ACCESS_KEY_ID=<%= @aws_access_key_id -%> AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key -%><% end -%> aws s3 sync ^source ^target",
-    onCreate  = "[ -f ^source^pathname ] && <% if @aws_access_key_id -%>AWS_ACCESS_KEY_ID=<%= @aws_access_key_id -%> AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key -%><% end -%> aws s3 cp ^source^pathname ^target^pathname || true",
-    onModify  = "[ -f ^source^pathname ] && <% if @aws_access_key_id -%>AWS_ACCESS_KEY_ID=<%= @aws_access_key_id -%> AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key -%><% end -%> aws s3 cp ^source^pathname ^target^pathname || true",
+    onStartup = "/etc/lsyncd/awswrapper.sh sync ^source ^target",
+    onCreate  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname || true",
+    onModify  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname || true",
 <% if @delete == true -%>
-    onDelete  = "[ -f ^source^pathname ] && <% if @aws_access_key_id -%>AWS_ACCESS_KEY_ID=<%= @aws_access_key_id -%> AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key -%><% end -%> aws s3 rm ^target^pathname || true",
+    onDelete  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh rm ^target^pathname || true",
 <% else -%>
     onDelete  = "true", -- delete administratively disabled
 <% end -%>
-    onMove    = "<% if @aws_access_key_id -%>AWS_ACCESS_KEY_ID=<%= @aws_access_key_id -%> AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key -%><% end -%> aws s3 mv ^target^o.pathname ^target^d.pathname",
+    onMove    = "/etc/lsyncd/awswrapper.sh mv ^target^o.pathname ^target^d.pathname",
 }
 
 sync {

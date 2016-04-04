@@ -32,7 +32,7 @@ class unifi_video::backup (
 
   # TODO: Happy to accept a PR for anything like a proper native lsyncd
   # S3 integration.
-
+    
   package { 'lsyncd':
     ensure => 'installed'
   }
@@ -50,15 +50,22 @@ class unifi_video::backup (
     mode   => '755',
   }
 
+  file { '/etc/lsyncd/awswrapper.sh':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0700',
+    content => template('unifi_video/lsyncd-awscli.sh.erb'),
+    require => [ File['/etc/lsyncd'] ],
+  }
+
   file { '/etc/lsyncd/lsyncd.conf.lua':
     owner   => 'root',
     group   => 'root',
     mode    => '0600',
     content => template('unifi_video/lsyncd-s3.conf.erb'),
-    require => [ File['/etc/lsyncd'], Package['lsyncd'], Package['awscli'] ],
+    require => [ File['/etc/lsyncd'], File['/etc/lsyncd/awswrapper.sh'], Package['lsyncd'], Package['awscli'] ],
     notify  => Service['lsyncd'],
   }
 
-  
 }
 # vi:smartindent:tabstop=2:shiftwidth=2:expandtab:
