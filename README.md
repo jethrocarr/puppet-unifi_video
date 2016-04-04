@@ -34,9 +34,6 @@ are supported by this module.
 There is no RHEL/clone version or any platforms other than x86_64 because
 Ubiquiti don't provide any software/support for those platforms.
 
-Optionally requires the use of [thias/lsyncd](https://forge.puppetlabs.com/thias/lsyncd)
-for configuring the lsyncd-based backup/sync of video files.
-
 
 ## Limitations
 

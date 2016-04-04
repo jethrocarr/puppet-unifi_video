@@ -26,16 +26,30 @@ class unifi_video::backup (
     })
 
 
-  # We use thias/lsyncd to do most of the lsyncd lifting - we just point
+  # We use lsyncd to do most of the heavy lifting - we just point
   # it to our own configuration file which configures lsyncd to use the
   # AWS S3 cli.
 
   # TODO: Happy to accept a PR for anything like a proper native lsyncd
   # S3 integration.
 
-  class { 'lsyncd':
-    config_content => template('unifi_video/lsyncd-s3.conf.erb'),
-    require        => Package['awscli'],
+  package { 'lsyncd':
+    ensure => 'installed'
+  }
+
+  service { 'lsyncd':
+    ensure    => 'running',
+    enable    => true,
+    require   => Package['lsyncd'],
+  }
+
+  file { '/etc/lsyncd.conf':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    content => template('unifi_video/lsyncd-s3.conf.erb'),
+    require => [ Package['lsyncd'], Package['awscli'] ],
+    notify  => Service['lsyncd'],
   }
 
   
