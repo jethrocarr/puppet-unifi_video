@@ -43,12 +43,19 @@ class unifi_video::backup (
     require   => Package['lsyncd'],
   }
 
-  file { '/etc/lsyncd.conf':
+  file { '/etc/lsyncd':
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '755',
+  }
+
+  file { '/etc/lsyncd/lsyncd.conf.lua':
     owner   => 'root',
     group   => 'root',
-    mode    => '0644',
+    mode    => '0600',
     content => template('unifi_video/lsyncd-s3.conf.erb'),
-    require => [ Package['lsyncd'], Package['awscli'] ],
+    require => [ File['/etc/lsyncd'], Package['lsyncd'], Package['awscli'] ],
     notify  => Service['lsyncd'],
   }
 
