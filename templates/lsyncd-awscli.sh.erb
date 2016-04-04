@@ -10,6 +10,9 @@ export AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key %>
 # No credentials supplied, assuming IAM role or system-wide config available.
 <% end %>
 
-# Pass command as-is to aws cli S3
-aws s3 $@
+# Correct path to find 'aws' utility
+export PATH=/bin:/usr/bin:/usr/local/bin
+
+# Pass command as-is to aws cli S3 and log to syslog
+aws s3 $@ 2>&1 | logger -t lsyncd
 
