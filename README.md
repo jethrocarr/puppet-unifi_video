@@ -14,6 +14,11 @@ Currently this module is limited to installed a specific version of the server:
       app_version => '3.1.2', # pin specific version
     }
 
+If left unset, `app_version` will be updated semi-frequently to the latest
+version offered by Ubiquiti. If this isn't something you'd like, please pin
+the version either using the syntax above, or by using Hiera.
+
+
 There is also a companion class that can be used to backup video recordings to
 an Amazon S3 bucket for off-site safe keeping. This uses lsyncd and awscli to
 trigger copies of files as they're written to disk to ensure prompt upload of
