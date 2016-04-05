@@ -20,10 +20,13 @@ trigger copies of files as they're written to disk to ensure prompt upload of
 any content.
 
     class { '::unifi_video::backup':
-      $target                => 's3://bucketname/videobackup/,
+      $target                => 's3://bucketname/videobackup,
       $aws_access_key_id     => 'Required if not using IAM roles',
       $aws_secret_access_key => 'Required if not using IAM roles',
     }
+
+Warning: Do not include a trailing slash on `target` param, it causes
+unexpected issues with AWS S3 directory browsing.
 
 
 ## Requirements
