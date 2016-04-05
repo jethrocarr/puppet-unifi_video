@@ -3,10 +3,10 @@
 s3sync = {
     maxProcesses = 1,
     onStartup = "/etc/lsyncd/awswrapper.sh sync ^source ^target",
-    onCreate  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname || true",
-    onModify  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname || true",
+    onCreate  = "/etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname",
+    onModify  = "/etc/lsyncd/awswrapper.sh cp ^source^pathname ^target^pathname",
 <% if @delete == true -%>
-    onDelete  = "[ -f ^source^pathname ] && /etc/lsyncd/awswrapper.sh rm ^target^pathname || true",
+    onDelete  = "/etc/lsyncd/awswrapper.sh rm ^target^pathname",
 <% else -%>
     onDelete  = "true", -- delete administratively disabled
 <% end -%>
