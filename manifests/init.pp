@@ -1,6 +1,7 @@
 # Installs the Ubiquiti UniFi video survillence software.
 class unifi_video (
-  $app_version = '3.1.2'
+  $app_version    = '3.1.2',
+  $app_https_port = '7443',
   ) {
 
   Exec {
@@ -60,6 +61,40 @@ class unifi_video (
     enable    => true,
     require   => Exec['unifi_video_install'],
   }
+
+
+  # If the non-default port is requested, setup redirect using NAT rules and
+  # the official puppetlabs firewall module. We have to do it this way, since
+  # Unifi Video doesn't respect it's configuration file stating what port to
+  # use.
+
+  if ($app_https_port != '7443') {
+
+    # Annoyingly, we have to define both v4 and v6 - it's not automatic that
+    # a single rule will create both. Hence, we specify the exact provider
+    # of "iptables" vs "ip6tables", even though the config is otherwise identical
+
+    firewall { '100 IPv4 port redirection for unifi video':
+      provider    => 'iptables',
+      table       => 'nat',
+      chain       => 'PREROUTING',
+      proto       => 'tcp',
+      dport       => '443',
+      jump        => 'REDIRECT',
+      toports     => '7443'
+    }
+
+    firewall { '100 IPv6 port redirection for unifi video':
+      provider    => 'ip6tables',
+      table       => 'nat',
+      chain       => 'PREROUTING',
+      proto       => 'tcp',
+      dport       => '443',
+      jump        => 'REDIRECT',
+      toports     => '7443'
+    }
+  }
+
 
 }
 # vi:smartindent:tabstop=2:shiftwidth=2:expandtab:

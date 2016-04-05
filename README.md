@@ -18,6 +18,17 @@ If left unset, `app_version` will be updated semi-frequently to the latest
 version offered by Ubiquiti. If this isn't something you'd like, please pin
 the version either using the syntax above, or by using Hiera.
 
+This module does not configure any kind of firewall, it is *strongly*
+recommended that you firewall this system heavily.
+
+You may also wish to change the https port to be something more convenient
+(eg `443`), if you change it from 7443, this module setups a firewall/NAT
+redirect from 443 to 7443, since the port can't be changed using any built
+in approach inside Unifi Video itself. This requires the
+[puppetlabs/firewall](https://forge.puppetlabs.com/puppetlabs/firewall) module.
+
+
+## Sync-to-Offsite
 
 There is also a companion class that can be used to backup video recordings to
 an Amazon S3 bucket for off-site safe keeping. This uses lsyncd and awscli to
