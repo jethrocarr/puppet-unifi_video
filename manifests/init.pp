@@ -54,5 +54,12 @@ class unifi_video (
     refreshonly => true,
   }
 
+  # Ensure the daemon is running and configured to launch at boot
+  service { 'unifi-video':
+    ensure    => 'running',
+    enable    => true,
+    require   => Exec['unifi_video_install'],
+  }
+
 }
 # vi:smartindent:tabstop=2:shiftwidth=2:expandtab:
