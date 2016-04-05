@@ -1,6 +1,7 @@
 # Installs the Ubiquiti UniFi video survillence software.
 class unifi_video (
-  $app_version = '3.1.2'
+  $app_version    = '3.1.2',
+  $app_https_port = '7443',
   ) {
 
   Exec {
@@ -54,11 +55,22 @@ class unifi_video (
     refreshonly => true,
   }
 
+  # Configuration file - mostly limited to just changing default ports
+  file { '/var/lib/unifi-video/system.properties':
+    ensure  => 'file',
+    mode    => '0644',
+    owner   => 'unifi-video',
+    group   => 'unifi-video',
+    content => template('unifi_video/unifi-system.properties.erb'),
+    require => Exec['unifi_video_install'],
+    notify  => Service['unifi-video'],
+  }
+
   # Ensure the daemon is running and configured to launch at boot
   service { 'unifi-video':
     ensure    => 'running',
     enable    => true,
-    require   => Exec['unifi_video_install'],
+    require   => File['/var/lib/unifi-video/system.properties'],
   }
 
 }
