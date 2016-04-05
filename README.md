@@ -11,22 +11,13 @@ IP-based video survelliance products.
 Currently this module is limited to installed a specific version of the server:
 
     class { '::unifi_video':
-      app_version    => '3.1.2', # pin specific version
-      app_https_port => '7443',  # port to listen on for https
+      app_version => '3.1.2', # pin specific version
     }
 
 If left unset, `app_version` will be updated semi-frequently to the latest
 version offered by Ubiquiti. If this isn't something you'd like, please pin
 the version either using the syntax above, or by using Hiera.
 
-This module does not configure any kind of firewall, it is *strongly*
-recommended that you firewall this system heavily. You may also wish to change
-the https port to be something more convenient (eg `443`), or even configure a
-vhost in Nginx or Apache to reverse proxy to the local `7080` port if you share
-this server with other sites (not recommended).
-
-
-## Sync-to-Offsite
 
 There is also a companion class that can be used to backup video recordings to
 an Amazon S3 bucket for off-site safe keeping. This uses lsyncd and awscli to
