@@ -66,7 +66,8 @@ class unifi_video (
   # If the non-default port is requested, setup redirect using NAT rules and
   # the official puppetlabs firewall module. We have to do it this way, since
   # Unifi Video doesn't respect it's configuration file stating what port to
-  # use.
+  # use. Note that firewalling will require you permit access to port 7443 due
+  # to how prerouting works.
 
   if ($app_https_port != '7443') {
 

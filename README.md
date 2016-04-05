@@ -27,6 +27,10 @@ redirect from 443 to 7443, since the port can't be changed using any built
 in approach inside Unifi Video itself. This requires the
 [puppetlabs/firewall](https://forge.puppetlabs.com/puppetlabs/firewall) module.
 
+Note, since this port change takes place in prerouting, you'll need to allow
+access to TCP/7443 regardless of what you change the port to in your iptables
+firewall rules.
+
 
 ## Sync-to-Offsite
 
