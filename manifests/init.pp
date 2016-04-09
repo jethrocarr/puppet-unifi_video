@@ -1,6 +1,6 @@
 # Installs the Ubiquiti UniFi video survillence software.
 class unifi_video (
-  $app_version    = '3.1.2',
+  $app_version    = '3.2.1',
   $app_https_port = '7443',
   ) {
 
