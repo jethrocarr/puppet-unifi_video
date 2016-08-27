@@ -15,12 +15,12 @@ class unifi_video::backup (
     fail('A unifi_video::backup::target must be set, eg "s3://bucket/path/"')
   }
 
-  # We need the AWS CLI to be installed. We use ensure_resource to avoid any
+  # We need the AWS CLI to be installed. We use ensure_packages to avoid any
   # issues if double-defined by other modules on this system.
-  ensure_resource('package', ['python-pip'], {'ensure' => 'installed'})
+  ensure_packages(['python-pip'])
 
-  ensure_resource('package', ['awscli'], {
-    'ensure'   => 'installed',
+  ensure_packages(['awscli'], {
+    'ensure'   => 'present',
     'provider' => 'pip',
     'require'  => Package['python-pip']
     })
