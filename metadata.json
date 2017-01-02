@@ -1,6 +1,6 @@
 {
   "name": "jethrocarr/unifi_video",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "jethrocarr",
   "summary": "Provisions Ubiquiti's Video Surveillance software",
   "license": "Apache-2.0",
