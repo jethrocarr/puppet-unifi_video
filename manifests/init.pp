@@ -22,6 +22,9 @@ class unifi_video (
     if ($::operatingsystemrelease == '14.04') {
       $download_url = "https://dl.ubnt.com/firmwares/unifi-video/${app_version}/unifi-video_${app_version}~Ubuntu14.04_amd64.deb"
     }
+    if ($::operatingsystemrelease == '16.04') {
+      $download_url = "https://dl.ubnt.com/firmwares/unifi-video/${app_version}/unifi-video_${app_version}~Ubuntu16.04_amd64.deb"
+    }    
   }
   if ($::operatingsystem == 'Debian') {
     if ($::operatingsystemrelease == '7') {
