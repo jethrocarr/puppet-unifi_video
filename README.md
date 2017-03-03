@@ -48,6 +48,11 @@ any content.
 Warning: Do not include a trailing slash on `target` param, it causes
 unexpected issues with AWS S3 directory browsing.
 
+Note that this method isn't particularly efficient and can consume considerable
+CPU when busy. I now use my new project [Detectatron](https://github.com/jethrocarr/detectatron)
+to handle the uploads to S3 using a much faster Java-based connector, as well as
+performing AI detection across the images.
+
 
 ## Requirements
 
