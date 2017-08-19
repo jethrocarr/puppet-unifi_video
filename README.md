@@ -68,6 +68,9 @@ rather than slices in an easily consumable format.
        # Need to be set to the region and name of your S3 bucket
        aws_region             => 'us-east-1'
        s3_bucket              => 'example'
+
+       # Set the Unifi API key
+       unifi_api_key          => 'abc123'
     }
 
 Finally another option is [Detectatron](https://github.com/jethrocarr/detectatron)

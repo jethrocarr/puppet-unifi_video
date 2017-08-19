@@ -13,6 +13,7 @@ Environment=AWS_ACCESS_KEY_ID=<%= @aws_access_key_id %>
 Environment=AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key %>
 Environment=AWS_REGION=<%= @aws_region %>
 Environment=S3_BUCKET=<%= @s3_bucket %>
+Environment=UNIFI_API_KEY=<%= @unifi_api_key %>
 ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @uploader_dir -%>/build/libs/latest.jar
 RestartSec=5
 Restart=always

@@ -12,6 +12,7 @@ class unifi_video::uploader (
   $aws_secret_access_key = undef,
   $aws_region            = 'us-east-1',
   $s3_bucket             = undef,
+  $unifi_api_key         = undef,
   ) {
 
   # We only support systemd
