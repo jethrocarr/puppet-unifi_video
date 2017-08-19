@@ -8,7 +8,8 @@
   "project_page": "https://github.com/jethrocarr/puppet-unfi_video",
   "issues_url": "https://github.com/jethrocarr/puppet-unfi_video/issues",
   "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-vcsrepo","version_requirement":">= 1.0.0"},
+    {"name":"jethrocarr-initfact","version_requirement":">= 0.0.1"}
   ]
 }
-

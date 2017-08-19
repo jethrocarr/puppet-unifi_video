@@ -49,9 +49,30 @@ Warning: Do not include a trailing slash on `target` param, it causes
 unexpected issues with AWS S3 directory browsing.
 
 Note that this method isn't particularly efficient and can consume considerable
-CPU when busy. I now use my new project [Detectatron](https://github.com/jethrocarr/detectatron)
-to handle the uploads to S3 using a much faster Java-based connector, as well as
-performing AI detection across the images.
+CPU when busy. It also uploads videos in the original format stored on disk by
+UniFi Video, which consists of slices of video, rather than complete files.
+
+A more sophisticated solution is available with `unifi_video::uploader` which
+deploys a small Java application (https://github.com/jethrocarr/unifi-video-s3uploader)
+which listens to the MongoDB database and uploads videos directly to a S3
+bucket within seconds of their creation.
+
+One difference of this approach is that you end up with complete video files,
+rather than slices in an easily consumable format.
+
+    class { '::unifi_video::uploader':
+       # Required unless using IAM roles
+       aws_access_key_id      => ''
+       aws_secret_access_key  => ''
+
+       # Need to be set to the region and name of your S3 bucket
+       aws_region             => 'us-east-1'
+       s3_bucket              => 'example'
+    }
+
+Finally another option is [Detectatron](https://github.com/jethrocarr/detectatron)
+which can handle uploading to S3, but also performs AI detection on the videos
+using Amazon Recognition.
 
 
 ## Requirements

@@ -1,0 +1,23 @@
+# systemd unit file for UniFi Video S3 Uploader
+# (generated via puppet-unifi_video)
+#
+
+[Unit]
+Description=UniFi Video S3 Uploader
+
+
+[Service]
+Type=simple
+WorkingDirectory=<%= @uploader_dir %>
+Environment=AWS_ACCESS_KEY_ID=<%= @aws_access_key_id %>
+Environment=AWS_SECRET_ACCESS_KEY=<%= @aws_secret_access_key %>
+Environment=AWS_REGION=<%= @aws_region %>
+Environment=S3_BUCKET=<%= @s3_bucket %>
+ExecStart=<%= @java_binary %> -Xmx<%= @java_heap_mb %>m -jar <%= @uploader_dir -%>/build/libs/latest.jar
+RestartSec=5
+Restart=always
+User=<%= @uploader_user %>
+Group=<%= @uploader_group %>
+
+[Install]
+WantedBy=multi-user.target
