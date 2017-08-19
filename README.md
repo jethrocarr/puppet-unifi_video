@@ -40,9 +40,9 @@ trigger copies of files as they're written to disk to ensure prompt upload of
 any content.
 
     class { '::unifi_video::backup':
-      $target                => 's3://bucketname/videobackup,
-      $aws_access_key_id     => 'Required if not using IAM roles',
-      $aws_secret_access_key => 'Required if not using IAM roles',
+      target                => 's3://bucketname/videobackup,
+      aws_access_key_id     => 'Required if not using IAM roles',
+      aws_secret_access_key => 'Required if not using IAM roles',
     }
 
 Warning: Do not include a trailing slash on `target` param, it causes
@@ -62,15 +62,15 @@ rather than slices in an easily consumable format.
 
     class { '::unifi_video::uploader':
        # Required unless using IAM roles
-       aws_access_key_id      => ''
-       aws_secret_access_key  => ''
+       aws_access_key_id      => '',
+       aws_secret_access_key  => '',
 
        # Need to be set to the region and name of your S3 bucket
-       aws_region             => 'us-east-1'
-       s3_bucket              => 'example'
+       aws_region             => 'us-east-1',
+       s3_bucket              => 'example',
 
        # Set the Unifi API key
-       unifi_api_key          => 'abc123'
+       unifi_api_key          => 'abc123',
     }
 
 Finally another option is [Detectatron](https://github.com/jethrocarr/detectatron)
