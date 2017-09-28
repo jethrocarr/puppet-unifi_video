@@ -7,7 +7,7 @@ class unifi_video (
   Exec {
     path => ['/sbin', '/bin', '/usr/sbin', '/usr/bin'],
   }
-  
+
 
   # Ubiquiti's packaging is a bit of a PITA, they package their software as debs
   # without APT repos and naming isn't always consistent (eg sometimes the
@@ -17,22 +17,22 @@ class unifi_video (
 
   if ($::operatingsystem == 'Ubuntu') {
     if ($::operatingsystemrelease == '12.04') {
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video_${app_version}-Debian7_amd64.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian7_amd64.v${app_version}.deb"
     }
     if ($::operatingsystemrelease == '14.04') {
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video_${app_version}-Ubuntu14.04_amd64.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Ubuntu14.04_amd64.v${app_version}.deb"
     }
     if ($::operatingsystemrelease == '16.04') {
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video_${app_version}-Ubuntu16.04_amd64.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Ubuntu16.04_amd64.v${app_version}.deb"
     }
   }
   if ($::operatingsystem == 'Debian') {
     if ($::operatingsystemrelease == '7') {
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video_${app_version}-Debian7_amd64.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian7_amd64.v${app_version}.deb"
     }
     if ($::operatingsystemrelease =~ /^8/) {
       # There is no proper Debian 8 package, let's use the older Debian 7 one until Ubiquiti get their shit together
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video_${app_version}-Debian7_amd64.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian7_amd64.v${app_version}.deb"
      }
   }
   if ($download_url == "") {
