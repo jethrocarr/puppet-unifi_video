@@ -31,8 +31,10 @@ class unifi_video (
       $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian7_amd64.v${app_version}.deb"
     }
     if ($::operatingsystemrelease =~ /^8/) {
-      # There is no proper Debian 8 package, let's use the older Debian 7 one until Ubiquiti get their shit together
-      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian7_amd64.v${app_version}.deb"
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian8_amd64.v${app_version}.deb"
+    }
+    if ($::operatingsystemrelease =~ /^9/) {
+      $download_url = "https://dl.ubnt.com/firmwares/ufv/v${app_version}/unifi-video.Debian9_amd64.v${app_version}.deb"
      }
   }
   if ($download_url == "") {
